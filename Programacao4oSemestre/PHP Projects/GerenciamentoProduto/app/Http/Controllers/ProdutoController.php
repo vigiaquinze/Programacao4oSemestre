@@ -61,7 +61,7 @@ class ProdutoController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'preco' => 'required|decimal'
+            'preco' => 'required|numeric'
         ]);
 
         $produto->update($request->all());
