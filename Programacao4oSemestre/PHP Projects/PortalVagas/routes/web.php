@@ -1,21 +1,33 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VagaController;
 
 
-// Rota para login
-Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('usuarios.login');
+
+// Rota para exibir a homePage
+Route::get('/',function(){return view('home');});
+
+
+// Rota para exibir o formulário de login
+Route::get('/login', [UsuarioController::class, 'showLoginForm'])->
+name('usuarios.login');
+
 
 // Rota para processar o login
-Route::get('/login', [UsuarioController::class, 'login'])->name('usuarios.login');
+Route::post('/login', [UsuarioController::class, 'login'])->
+name('usuarios.login');
 
-// Rota para registro
-Route::get('/registro', [UsuarioController::class, 'register'])->name('usuarios.register');
+
+// Rota para exibir o formulário de registro
+Route::get('/registro', [UsuarioController::class, 'showRegistroForm'])->
+name('usuarios.registro');
+
 
 // Rota para processar o registro
-Route::post('/registro', [UsuarioController::class, 'register'])->
-name('usuarios.register');
+Route::post('/registro', [UsuarioController::class, 'registro'])->
+name('usuarios.registro');
 
 
 // Rota para logout
@@ -27,3 +39,5 @@ name('usuarios.logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+Route::resource('/vagas', VagaController::class);
