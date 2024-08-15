@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\UsuarioController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Rota para login
 Route::get('/login', [UsuarioController::class, 'showLoginForm'])->name('usuarios.login');
