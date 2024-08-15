@@ -1,13 +1,11 @@
-@extends('layouts.app')
-
-@if(Auth::check())
+@if (Auth::check())
     <div>
-        <h3>Olá, {{Auth::user()->nome}}</h3>
+        <h3>Olá, {{ Auth::user()->nome }}</h3>
     </div>
     <div>
         <form action="/logout" method="post">
             @csrf
-            <button type="submit">Logout</button>
+            <input type='submit' value='Sair'>
         </form>
     </div>
     <br>
@@ -18,4 +16,7 @@
         <a href="/login">Login</a>
         <a href="/registro">Registre-se</a>
     </div>
+    <br>
+    <hr>
+    <br>
 @endif

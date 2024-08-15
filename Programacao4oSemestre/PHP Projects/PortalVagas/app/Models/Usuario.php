@@ -7,28 +7,14 @@ use Illuminate\Notifications\Notifiable;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    use Notifiable, HasFactory;
     protected $fillable = [
-        'nome',
-        'email',
-        'password',
+        'nome', 'email', 'password', 'tipo', 'cnpj','nome_empresa'
+    ];
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
 
     /**
      * Get the attributes that should be cast.
@@ -37,6 +23,14 @@ class Usuario extends Authenticatable
      */
     public function candidaturas() {
         return $this->hasMany(Candidatura::class);
+    }
+
+    public function isUser() {
+        return $this->tipo == "usuario";
+    }
+
+    public function isEmpresa() {
+        return $this->tipo == "empresa";
     }
 
 }
