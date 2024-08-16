@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vaga;
+use Illuminate\Support\Facades\Auth;
 
 class VagaController extends Controller
 {
@@ -13,16 +14,18 @@ class VagaController extends Controller
     public function index()
     {
         $vagas = Vaga::all();
-        return view('vagas.index');
+        return view('vagas.index',compact('vagas'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('vagas.create', compact('vagas'));
+        return view('vagas.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -30,22 +33,32 @@ class VagaController extends Controller
     public function store(Request $request)
     {
         $dados = $request->validate([
-            'titulo'=>'required | max:100',
-            'descricao'=>'required',
-            'localizacao'=>'required',
-            'salario'=>'required | numeric',
+            'titulo'=> 'required|max:100',
+            'descricao'=> 'required',
+            'localizacao'=> 'required',
+            'salario'=>'required|numeric',
             'empresa'=>'required'
         ]);
         Vaga::create($dados);
+
+
+        return redirect()->route('vagas.index')
+            ->with('success', 'Vaga criado com sucesso.');
+
+
     }
+
+
+
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vaga $vaga)
     {
-        return view('vagas.edit', compact('vagas'));
+        return view('vagas.edit',compact('vaga'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -53,16 +66,19 @@ class VagaController extends Controller
     public function update(Request $request, Vaga $vaga)
     {
         $dados = $request->validate([
-            'titulo'=>'required | max:100',
-            'descricao'=>'required',
-            'localizacao'=>'required',
-            'salario'=>'required | numeric',
+            'titulo'=> 'required|max:100',
+            'descricao'=> 'required',
+            'localizacao'=> 'required',
+            'salario'=>'required|numeric',
             'empresa'=>'required'
         ]);
         $vaga->update($dados);
 
-        return redirect()->route('vagas.index')->with('success', 'Vaga atualizada com sucesso.');
+
+        return redirect()->route('vagas.index')
+            ->with('success', 'Vaga Atualizada com sucesso.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -71,6 +87,8 @@ class VagaController extends Controller
     {
         $vaga->delete($vaga);
 
-        return redirect()->route('vagas.index')->with('success', 'Vaga excluída com sucesso.');
+
+        return redirect()->route('vagas.index')
+            ->with('success', 'Vaga Deletada com sucesso.');
     }
 }

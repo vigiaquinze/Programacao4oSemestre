@@ -1,9 +1,4 @@
-
-@extends('layouts.app')
-
-
-
-
+@extends('layouts.master')
 @section('content')
     <div class="container">
         <h1 class="my-4">Vagas</h1>
@@ -21,7 +16,7 @@
 
         <table class="table table-bordered">
             <tr>
-                <th>Nº</th>
+                <th>ID</th>
                 <th>Título</th>
                 <th>Descrição</th>
                 <th>Localização</th>
@@ -31,7 +26,7 @@
             </tr>
             @foreach ($vagas as $vaga)
             <tr>
-                <td>{{ $loop->iteration }}</td>
+                <td>{{ $vaga->id }}</td>
                 <td>{{ $vaga->titulo }}</td>
                 <td>{{ $vaga->descricao }}</td>
                 <td>{{ $vaga->localizacao}}</td>
@@ -50,4 +45,3 @@
         </table>
     </div>
 @endsection
-

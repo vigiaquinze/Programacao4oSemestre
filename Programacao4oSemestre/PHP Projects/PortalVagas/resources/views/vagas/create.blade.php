@@ -1,9 +1,4 @@
-
-@extends('layouts.app')
-
-
-
-
+@extends('layouts.master')
 @section('content')
 <div class="container">
     <h1 class="my-4">Criar Vaga</h1>

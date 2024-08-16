@@ -5,10 +5,9 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use App\Models\Usuario;
 
 
 class UsuarioController extends Controller
@@ -45,16 +44,16 @@ class UsuarioController extends Controller
 
 
     // Exibir o formulário de registro
-    public function showRegistroForm()
+    public function showRegisterForm()
     {
-        return view('usuarios.registro');
+        return view('usuarios.register');
     }
 
 
-    // Processar o registro de um novo usuário
-    public function registro(Request $request)
+    // Processar o register de um novo usuário
+    public function register(Request $request)
     {
-        // Validações para o registro
+        // Validações para o register
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
@@ -92,5 +91,3 @@ class UsuarioController extends Controller
         return redirect('/');
     }
 }
-
-

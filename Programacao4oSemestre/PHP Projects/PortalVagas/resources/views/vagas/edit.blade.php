@@ -1,8 +1,4 @@
-@extends('layouts.app')
-
-
-
-
+@extends('layouts.master')
 @section('content')
 <div class="container">
     <h1 class="my-4">Criar Vaga</h1>
@@ -21,34 +17,35 @@
 
 
     <form action="{{ route('vagas.update', $vaga->id) }}" method="POST">
-        @csrf
+         @csrf
+	   @method('PUT')
         <div class="form-group">
             <label for="nome">Título:</label>
-            <input type="text" name="titulo" class="form-control" value="{{vaga->titulo}}">
+            <input type="text" name="titulo" class="form-control" value="{{$vaga->titulo}}">
         </div>
 
 
         <div class="form-group">
             <label for="descricao">Descrição:</label>
-            <textarea name="descricao" class="form-control" value="{{vaga->descricao}}"></textarea>
+            <input type="text" name="descricao" class="form-control" value="{{$vaga->descricao}}">
         </div>
 
 
         <div class="form-group">
             <label for="localizacao">Localização:</label>
-            <input type="text" name="localizacao" class="form-control" value="{{vaga->localizacao}}">
+            <input type="text" name="localizacao" class="form-control" value="{{$vaga->localizacao}}">
         </div>
 
 
         <div class="form-group">
             <label for="salario">Salário:</label>
-            <input type="text" name="salario" class="form-control" value="{{vaga->salario}}">
+            <input type="text" name="salario" class="form-control" value="{{$vaga->salario}}">
         </div>
 
 
         <div class="form-group">
             <label for="empresa">Empresa:</label>
-            <input type="text" name="empresa" class="form-control" value="{{vaga->empresa}}">
+            <input type="text" name="empresa" class="form-control" value="{{$vaga->empresa}}">
         </div>
 
 
