@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -12,8 +11,7 @@
                 <h2>{{ $vaga->empresa }}</h2>
                 <p>{{ $vaga->descricao }}</p>
                 <p>{{ $vaga->localizacao }}</p>
-                <p>Preço: R${{ $vaga->salario }}</p>
-
+                <p>Salário: R$ {{ $vaga->salario }}</p>
 
                 <form method="POST" action="{{ route('inscricao.add', $vaga->id) }}">
                     @csrf

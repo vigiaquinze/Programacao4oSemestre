@@ -41,5 +41,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
 
-Route::resource('/vagas',VagaController::class)->
-middleware(VagaMiddleware::class);
+Route::resource('/vagas',VagaController::class)->middleware(VagaMiddleware::class)->except('show');
+
+Route::get('vagas/{vaga}', [VagaController::class, 'show'])->middleware('')->name('vagas.show');
