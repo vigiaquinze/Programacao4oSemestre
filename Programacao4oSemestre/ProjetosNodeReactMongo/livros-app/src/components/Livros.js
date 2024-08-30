@@ -118,7 +118,7 @@ const Livros = () => {
                         value={livroParaAtualizar.genero}
                         onChange={(e) => setLivroParaAtualizar({ ...livroParaAtualizar, genero: e.target.value })}
                     />
-                    <button onClick={() => handleUpdate(livroParaAtualizar._id)}>Update Book</button>
+                    <button onClick={() => handleUpdate(livroParaAtualizar._id)}>Atualizar livro</button>
                 </div>
             )}
         </div>

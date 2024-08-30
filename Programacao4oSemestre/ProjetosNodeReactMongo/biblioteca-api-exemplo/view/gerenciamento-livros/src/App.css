@@ -1,0 +1,48 @@
+@keyframes button {
+  0% {
+            transform: translateY(0);
+  }
+  100% {
+            transform: translateY(-5px);
+  }
+}
+
+
+body {
+  margin: 50px;
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+table {
+  border: 1px solid #000;
+  border-spacing: 0px;
+}
+
+td {
+  border: 1px solid #000;
+  margin: 0px auto;
+  padding: 5px;
+}
+
+th {
+  border: 1px solid #000;
+  background-color: #dadada;
+}
+
+button {
+  font-family: "Bricolage Grotesque", sans-serif;
+  background-color: #00000000;
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+  transition: 0.5s ease-in-out both;
+}
+
+button:hover{
+  background-color: #000;
+  color: #fff;
+  transition: 0.5s ease-in-out;
+  animation: button 0.5s ease-in-out both;
+}
