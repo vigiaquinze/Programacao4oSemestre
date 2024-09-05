@@ -1,27 +1,31 @@
-//GET E POST
 import { getToDos, createToDo } from "@/controllers/ToDoController";
+import connectMongo from "@/utils/dbConnect";
+import closeConnectionMongo from "@/utils/dbCloseConnect";
 import { NextResponse } from "next/server";
 
-//GET
-
-export async function GET(req, res) {
+// GET
+export async function GET(req) {
   try {
+    await connectMongo();
     const toDos = await getToDos();
-    return NextResponse.json({
-        success:true, data:toDos
-    });
+    await closeConnectionMongo();
+    return NextResponse.json({ success: true, data: toDos });
   } catch (error) {
-    return NextResponse.json({success:false}, {status: 400});
+    console.error("Erro ao buscar ToDos:", error);
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
 
-export async function POST(req, res) {
+// POST
+export async function POST(req) {
+  try {
     await connectMongo();
-    try {
-      const data = await req.json();
-      const todo = await ToDo.create(data);
-      return NextResponse.json({ success: true, data: todo });
-    } catch (error) {
-      return NextResponse.json({ success: false }, { status: 400 });
-    }
+    const data = await req.json();
+    const todo = await createToDo(data);
+    await closeConnectionMongo();
+    return NextResponse.json({ success: true, data: todo });
+  } catch (error) {
+    console.error("Erro ao criar ToDo:", error);
+    return NextResponse.json({ success: false, error: error.message }, { status: 400 });
+  }
 }
